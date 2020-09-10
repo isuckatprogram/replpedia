@@ -1,0 +1,74 @@
+body{
+  background-color: #333;
+}
+
+*{
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+form{
+  text-align: center;
+  color: white;
+}
+
+form input[type=search]{
+  color: black;
+}
+
+.post{
+  overflow: scroll;
+}
+
+.wiki{
+  display: inline-block;
+  padding: 10px 10px;
+  height: 290px;
+  width: 250px;
+  margin-left: 5px;
+  border: 5px solid;
+  overflow: scroll;
+}
+
+body *{
+  color: white;
+}
+footer{
+  position: absolute;
+  bottom: 100%;
+  left: 100%;
+  text-align: center;
+  width: 100%;
+  padding: 10px 10px;
+  overflow: hidden;
+}
+#content{
+  border: 5px solid;
+  min-width: 200px;
+  width: fit-content;
+  max-width: 500px;
+  height: 500px;
+  padding: 10px 10px;
+  text-align: center;
+  margin: auto;
+  border-radius: 20px 20px;
+  overflow: scroll;
+}
+.content{
+  border: 5px solid;
+  width: 500px;
+  height: fit-content;
+  padding: 10px 10px;
+  text-align: center;
+  margin: auto;
+}
+button{
+  color: black;
+}
+input{
+  color: black;
+}
+textarea{
+  width: 200px;
+  height: 150px;
+  color: black;
+}

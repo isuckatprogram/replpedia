@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/static/style.css">
+    <title>Replpedia</title>
+  </head>
+  <body>
+    <div id="search-bar">
+      <form action="/search">
+        <input type="search" id="search" name="search" placeholder="search" autocomplete="off" autofocus>
+      </form>
+    </div><br>
+    <div id="content">
+      <form action="/edit" method="POST" enctype="multipart/form-data">
+        <input type="text" name="name"  value="{{ name }}" disabed><br/><br/>
+        <textarea name="content" placeholder="Content" >{{ content }}</textarea><br/>
+        <p><a href="https://repl.it/talk/learn/A-Quick-Guide-to-Replit-Talk-Markdown/7448">Markdown supported</a></p>
+        <input type="hidden" name="author" value="{{ username }}">
+        <input type="submit">
+      </form>
+    </div>
+  </body>
+  <footer>
+    © 2020 PDanielY
+  </footer>
+</html>

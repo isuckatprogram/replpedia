@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/static/style.css">
+    <title>Replpedia</title>
+    <meta name="google-site-verification" content="J6HEwcAJGfTbTctV07bGPR6X39KIBa1qYeyIXQF6T9E" />
+  </head>
+  <body>
+    <div id="search-bar">
+      <form id="search-form" action="/search">
+        <input type="search" id="search" name="search" placeholder="search" autocomplete="off" autofocus>
+      </form>
+    </div><br>
+    <div id="content">
+    {% if article_name %}
+    <div class="post">
+    <h1>{{ article_name }} (By {{ article_author }})</h1>
+    <p>{{ article_content|safe }}</p>
+    </div>
+    {% else %}
+    <h1>Replpedia (By PDanielY)</h1>
+    <p>Replpedia is an un-official wikipedia that only contains things that involve repl.it. It supports <a href="/">markdown</a> and a lot of other things. Go create a post on replpedia go to <a href="/create">here</a>. Created by PDanielY</p>
+    {% endif %}
+    </div>
+    {% if admin %}
+    <div id="admin">
+      <a href="/edit">Edit</a>
+      <a href="/delete">Delete</a>
+      <a href="/hide">Hide</a>
+    </div>
+    {% else %}
+    {% for info in wikis %}
+    <div class="content"><h1><a href="/wiki/{{ info['name'] }}">{{ info['name'] }}</a></h1></div>
+    {% endfor %}
+    {% endif %}
+  </body>
+  <footer>
+    © 2020 PDanielY
+  </footer>
+</html>

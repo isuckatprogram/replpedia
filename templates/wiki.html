@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/static/style.css">
+    <title>Replpedia</title>
+  </head>
+  <body>
+    <div id="search-bar">
+      <form id="search-form" action="/search">
+        <input type="search" id="search" name="search" placeholder="search" autocomplete="off" autofocus>
+      </form>
+    </div><br>
+    {% for info in wikis %}
+    <div class="wiki"><h1><a href="/wiki/{{ info['name'] }}">{{ info['name'] }}</a></h1> <p> {{ info['html'][0:90] }}...</p></div>
+    {% endfor %}
+
+  </body>
+  <footer>
+    © 2020 PDanielY
+  </footer>
+</html>
