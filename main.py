@@ -9,13 +9,20 @@ import requests
 import os
 import urllib.parse
 from utils import search
+from utils import sitemap
+import utils
 
 app = Flask('Replpedia')
-minify(app=app, html=True, js=True, cssless=True)
 
 # For development only
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
+# @app.before_request
+# def before_request():
+#   if request.is_secure == False:
+#     url = request.url.replace('http://', 'https://', 1)
+#     code = 301
+#     return redirect(url, code=code)
 
 @app.errorhandler(404)
 def page_not_found(e):
@@ -25,9 +32,22 @@ def page_not_found(e):
 def server_error(e):
   return render_template('server_error.html'), 500
 
+@app.route('/robots.txt', methods=['GET', 'POST'])
+def r():
+  return redirect('/static/robots.txt')
+
+@app.route('/sitemap.xml', methods=['GET', 'POST'])
+def sitemap():
+  s = utils.sitemap.generate_sitemap()
+  return s
+
 @app.route('/',methods=['GET','POST'])
 def home():
   return render_template('base.html')
+
+@app.route('/favicon.ico', methods=['GET'])
+def logo():
+  return redirect('/static/replpedia.png')
 
 @app.route('/create',methods=['GET','POST'])
 def create():
@@ -79,6 +99,23 @@ def wiki(name):
     if info['hidden'] == True:
       return render_template('404.html')
     return render_template('base.html',article_name=info['name'],article_content=info['html'],article_author=info['author'])
+
+@app.route('/api/search', methods=['POST'])
+def search_api():
+  json = request.json
+
+  if json['search'] == None:
+    return j.dumps({
+      'ok': False,
+      'message': 'Please include a search paramater',
+      'results': None
+    })
+    
+  results_array = search.search(json['search'])
+  return j.dumps({
+    'ok': True,
+    'results': results_array
+  })
 
 @app.route('/search',methods=['GET','POST'])
 def search_page():

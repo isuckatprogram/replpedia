@@ -1,7 +1,7 @@
 import database
 
 def search(value):
-  results = database.get_wikis({})
+  results = database.get_wikis({ 'hidden': False })
   results_array = []
   for i in results:
     if i['name'].find(value) != -1:
@@ -13,5 +13,4 @@ def search(value):
     elif i['author'].find(value) != -1:
       i.pop('_id')
       results_array.append(i)
-    print(results_array)
   return results_array

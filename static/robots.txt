@@ -1,0 +1,7 @@
+User-Agent: *
+Allow: /
+Disallow: /edit
+Disallow: /hide
+Disallow: /delete
+
+Sitemap: https://replpedia.jdaniels.me/sitemap.xml
