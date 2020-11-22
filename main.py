@@ -41,6 +41,10 @@ def sitemap():
   s = utils.sitemap.generate_sitemap()
   return s
 
+@app.route('/arc-sw.js', methods=['GET', 'POST'])
+def s():
+	return render_template('arc.js')
+
 @app.route('/',methods=['GET','POST'])
 def home():
   return render_template('base.html')
